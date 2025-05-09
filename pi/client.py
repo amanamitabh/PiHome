@@ -1,51 +1,58 @@
-import cv2
 import os
 import time
 import requests
 import devices
+from dotenv import load_dotenv
 
-server_name = "AMANPAVILION.local"  # Server hostname or IP address
+# Automatically load .env file in the current directory
+load_dotenv()
+
+# Get the server name from environment variables
+server_name = os.getenv("SERVER_NAME")
+
+# URL to send the image for processing
 url = f"http://{server_name}:6500/process"
-devices.setup()
 
+# Initialize devices
+devices.setup()
 
 try:
     while True:
-        os.system("raspistill -t 1000 -n -o image.jpg")   # Capture image using and save it in 'image.jpg'
+        # Capture image using and save it in 'image.jpg'
+        os.system("raspistill -t 1000 -n -o image.jpg")
+
+         # Read the captured image in binary mode for sending it to the server for processing via POST request
         with open("image.jpg", 'rb') as img_file:
             files = {'img': img_file}
             response = requests.post(url, files=files)
 
+        # Check if the server processed the image successfully and extract result
         if response.ok:
             result = response.json()['result']
             print("Server says:", result)
             
+            # Assign hand gestures to devices on GPIO pins
             if result == 'Open':
-                devices.toggleLED(17) # Red LED
+                devices.toggleLED(17)
             
             elif result == 'OK':
-                devices.toggleLED(18) # Green LED
+                devices.toggleLED(18) 
                 
             elif result == 'Pointer':
-                devices.toggleFan(27) # Fan
+                devices.toggleFan(27)
                 
             elif result == 'Close':
-                devices.toggleLED(22) # Red LED
+                devices.toggleLED(22)
             
         else:
             print("Failed to send image")
         
-            
-        time.sleep(5)
+        # Delay between image captures
+        time.sleep(3)
     
 except KeyboardInterrupt:
     print("Exiting gracefully")
         
 finally:
+    # Cleanup GPIO pins before exiting program
     devices.cleanup()
-        
-        
-
-
-
-

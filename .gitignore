@@ -1,3 +1,6 @@
+# Ignore .gitignore
+.gitignore
+
 # Ignore Python cache
 __pycache__/
 *.py[cod]
@@ -15,7 +18,7 @@ env/
 *.log
 
 
-# Ignore image/data dumps (optional)
+# Ignore image/data dumps
 *.jpg
 *.jpeg
 *.png

@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import time
 
 print("Devices Loaded")
 
@@ -26,6 +25,7 @@ def setup():
     
 
 def toggleLED(pin):
+    # Toggle LED state based on previous input
     if(GPIO.input(pin)):
         GPIO.output(pin, GPIO.LOW)
         print(f"Turning LED: {pin} OFF")
@@ -35,6 +35,7 @@ def toggleLED(pin):
         
 
 def toggleFan(pin):
+    # Toggle Fan state based on previous input
     if(GPIO.input(pin)):
         GPIO.output(pin, GPIO.LOW)
         print(f"Turning Fan: {pin} ON")
@@ -44,4 +45,5 @@ def toggleFan(pin):
 
 
 def cleanup():
+    # Reset GPIO pins to default states
     GPIO.cleanup()
