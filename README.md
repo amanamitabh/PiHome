@@ -92,19 +92,19 @@ python3 client.py
 - Relay Module
 - Wires
 
-![Circuit](assets\circuit.png)
+<img src="assets/circuit.png" alt="Circuit" height="600"/>
 
 ### GPIO Pin Connections
 
 The Raspberry Pi GPIO (General Purpose Input/Output) pins allow the Pi to interact with external components like LEDs, sensors, and motors. 
 
-![Pin Diagram](assets\pi3bgpio.png)
+<img src="assets/pi3bgpio.png" alt="Pin Diagram" height="600"/>
 
 Refer to the circuit diagram given below to connect the components to your Raspberry Pi. 
 
 **DO NOT CONNECT THE MOTOR DIRECTLY TO THE RASPBERRY PI. USE AN EXTERNAL POWER SOURCE ALONG WITH A RELAY MODULE CONTROLLED BY THE PI TO PREVENT OVERLOADING WHICH CAN DAMAGE YOUR RASPBERRY PI.**
 
-![Circuit Diagram](assets\diagram.png)
+![Circuit Diagram](assets/diagram.png)
 
 
 
@@ -119,7 +119,7 @@ The captured image is sent via HTTP POST to a [Flask](https://flask.palletsproje
 #### 🧠 Processing the Image
 The server uses [MediaPipe Hands](https://ai.google.dev/edge/mediapipe/solutions/guide) to extract hand landmarks. The coordinates of the extracted landmarks are passed to a Multilayer Perceptron (MLP) model which classifies the hand gestures.
 
-![Hand Landmarks](assets\hand_landmarks.png)
+![Hand Landmarks](assets/hand_landmarks.png)
 
 #### 📬 Response Handling
 The server responds with the name of the detected gesture (`Open`, `Close`, `OK`, `Pointer` or `None`).
