@@ -18,7 +18,8 @@ devices.setup()
 
 try:
     while True:
-        # Capture image using and save it in 'image.jpg'
+        #os.system("libcamera-still -t 1000 -n -o image.jpg")
+        # FOR NON-LEGACY CAMERAS, USE THE ABOVE LINE AND COMMENT THE LINE BELOW
         os.system("raspistill -t 1000 -n -o image.jpg")
 
          # Read the captured image in binary mode for sending it to the server for processing via POST request
